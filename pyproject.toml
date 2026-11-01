@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "epub-validator-cli"
+version = "1.0.0"
+description = "A local-only CLI that validates EPUB files for Amazon KDP upload: structure, navigation, and common errors."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+authors = [{ name = "Asdale Dynamics, LLC" }]
+keywords = ["epub", "kdp", "kindle", "validator", "publishing"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Text Processing :: Markup :: XML",
+    "Environment :: Console",
+]
+dependencies = []
+
+[project.scripts]
+epub-validate = "epub_validator_cli.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["epub_validator_cli*"]
+exclude = ["tests*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_unused_ignores = true
+warn_redundant_casts = true
+disallow_untyped_defs = true
